@@ -1,0 +1,3 @@
+Contains the class file that maps with the entity of the springBoot backend.
+
+        class => Entity

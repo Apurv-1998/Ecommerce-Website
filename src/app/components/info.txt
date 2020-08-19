@@ -1,0 +1,1 @@
+Contains the components to be added in the app.components.html which in turn is added to index.html
