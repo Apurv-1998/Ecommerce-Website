@@ -7,30 +7,12 @@
                 <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
             </a>
         </div>
-        <div class="menu-sidebar-content js-scrollbar1">
-            <nav class="navbar-sidebar">
-                <ul class="list-unstyled navbar-list">
-                    <li>
-                        <a href="#">Books</a>
-                    </li>
-                    <li>
-                        <a href="#">Coffee Mugs</a>
-                    </li>
-                    <li>
-                        <a href="#">Mouse Pads</a>
-                    </li>
-                    <li>
-                        <a href="#">Luggage Tags</a>
-                    </li>
-                    <li>
-                        <a href="#">Snacks</a>
-                    </li>
-                    <li>
-                        <a href="#">Juices</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+
+        <!-- Selector For New Menu Component -->
+
+        <app-product-category-menu></app-product-category-menu>
+
+        
     </aside>
     <!-- END MENU SIDEBAR-->
 
@@ -41,13 +23,12 @@
             <div class="section-content section-content-p30">
                 <div class="container-fluid">
                     <div class="header-wrap">
-                        <form class="form-header" onsubmit="return false;" method="GET">
-                            <input class="au-input au-input-xl" type="text" name="search"
-                                placeholder="Search for data ..." />
-                            <button class="au-btn-submit" type="submit">
-                                Search
-                            </button>
-                        </form>
+
+                        <!-- Adding The Search Component -->
+
+                        <app-search></app-search>
+
+                        
                         <div class="cart-area d-n">
                             <a href="shopping-detail.html">
                                 <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart"
@@ -62,7 +43,10 @@
         <!-- END HEADER DESKTOP-->
 
         <!-- MAIN CONTENT-->
-        <app-product-list></app-product-list>
+
+        <router-outlet></router-outlet>
+
+    <!--    <app-product-list></app-product-list> -->
 
     </div>
 
