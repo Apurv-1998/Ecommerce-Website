@@ -11,8 +11,15 @@
                 <div *ngFor = "let temp of products" class = "col-md-3">
 
                     <div class = "product-box">
+
+                        <a routerLink = "/products/{{ temp.productId }}">
                         <img src = "{{temp.imageUrl}}" class = "image-responsive">
+                        </a>
+
+                        <a routerLink = "/products/{{ temp.productId }}">
                         <h1>{{ temp.name }}</h1>
+                        </a>
+
                         
                         <div class = "price">{{ temp.unitPrice | currency: 'INR' }}</div>
                         <a href = "#" class = "primary-btn">Add To Cart</a>

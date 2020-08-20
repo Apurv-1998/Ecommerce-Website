@@ -25,6 +25,14 @@ export class ProductService {
     return this.httpClient.get<ProductRest[]>(searchUrl);
   }
 
+//Getting Single Product Method
+  getProduct(productId: string): Observable<ProductRest> {
+
+    const searchUrl = `${this.contextUrl}/products/${productId}`;
+
+    return this.httpClient.get<ProductRest>(searchUrl);
+  }
+
 // Product categories Method
   getProductCategories(): Observable<ProductCategory[]> {
     

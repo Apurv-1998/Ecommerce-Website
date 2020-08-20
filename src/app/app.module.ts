@@ -9,11 +9,13 @@ import { ProductService } from './services/product.service';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 //Defining Routes
-
+//The component name is basically the class name in component.ts file
 const routes: Routes = [
 
+  {path: 'products/:productId', component: ProductDetailsComponent},
   {path: 'search/products/:keyWord', component: ProductListComponent},
   {path: 'category/:categoryId/products',component: ProductListComponent},
   {path: 'category',component: ProductListComponent},
@@ -29,7 +31,8 @@ const routes: Routes = [
     AppComponent,
     ProductListComponent,
     ProductCategoryMenuComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
