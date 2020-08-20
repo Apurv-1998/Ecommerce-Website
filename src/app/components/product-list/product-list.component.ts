@@ -10,11 +10,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
 
-  products: ProductRest[];
+  //We have the pagination Properties of totalSize and totalPages in it only.
+  products: ProductRest[] = [];
 
-  currentCategoryId: string;
+  currentCategoryId: string = '';
 
-  searchMode: boolean;
+  searchMode: boolean = false;
+
+  //Additional Properties for pagination
+  page: number = 1;
+  limit: number = 2;
+  totalSize:number = 13;
+  flag:boolean = false;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -69,8 +76,6 @@ export class ProductListComponent implements OnInit {
 
     //Check if "id" parameter is available
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('categoryId');
-
-
     
     if(hasCategoryId){
       //read it and convert to a number using the '+' symbol
@@ -81,14 +86,38 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = '';
     }
 
-
-    //now get the products fro given category id
+    //now get the products from given category id
     this.productService.getProductList(this.currentCategoryId).subscribe(  
       data => {
         this.products = data;
       }
     );
+  }
 
+  handlePaginatedListProducts(){
+
+    this.page = +this.route.snapshot.paramMap.get('page');
+
+    this.limit = +this.route.snapshot.paramMap.get('limit');
+
+    //Now get the product list for the paginated views
+
+    this.productService.getPaginatedproduct(this.page,this.limit).subscribe(
+      data =>{
+        console.log('Received Paginated Data -> '+JSON.stringify(data));
+        this.products = data;   
+      }
+    );
+
+
+  }
+
+
+ // Add To Cart Method
+ 
+  addToCart(theProduct: ProductRest){
+
+    console.log(`Adding To Cart -> ${theProduct.name} with price -> ${theProduct.unitPrice}`);
   }
 
 }

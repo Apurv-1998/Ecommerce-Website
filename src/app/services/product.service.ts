@@ -17,6 +17,19 @@ export class ProductService {
     this.httpClient.get<GetResponseProducts>(this.baseUrl).subscribe(responseData=> console.log(responseData));
   }
 
+
+//Paginated Product List Method
+  getPaginatedproduct(thePage: number,theLimit: number): Observable<ProductRest[]>{
+
+    const searchUrl = `${this.contextUrl}/products`+`?page=${thePage}&limit=${theLimit}`;
+
+    console.log(`search url for pagination -> ${searchUrl}`);
+
+    return this.httpClient.get<ProductRest[]>(searchUrl);
+
+  }
+
+
 //Product List Method
   getProductList(theCategoryId: string): Observable<ProductRest[]> {
 
@@ -56,7 +69,13 @@ export class ProductService {
 interface GetResponseProducts {
   _embedded: {
     products: ProductRest[];
-  }
+  },
+  page:{
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
+  };
 }
 
 interface GetResponseProductCategory {

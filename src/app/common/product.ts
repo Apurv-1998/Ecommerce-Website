@@ -10,4 +10,6 @@ export class ProductRest {
     unitsInStock: number;
     dateCreated: Date;
     lastUpdated: Date;
+    totalSize: number;
+    totalPages: number;
 }
