@@ -13,11 +13,13 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 //Defining Routes
 //The component name is basically the class name in component.ts file
 const routes: Routes = [
 
+  {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:productId', component: ProductDetailsComponent},
   {path: 'search/products/:keyWord', component: ProductListComponent},
   {path: 'category/:categoryId/products',component: ProductListComponent},
@@ -36,7 +38,8 @@ const routes: Routes = [
     ProductCategoryMenuComponent,
     SearchComponent,
     ProductDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

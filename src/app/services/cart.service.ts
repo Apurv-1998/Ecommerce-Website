@@ -26,7 +26,14 @@ export class CartService {
 
       // find the item in the cart based on item id
 
-      existingCartItem = this.cartItems.find(temp => {temp.productId === theCartItem.productId});
+      for(let temp of this.cartItems){
+        if(temp.productId == theCartItem.productId){
+          existingCartItem = temp;
+          break;
+        }
+      }
+
+     // existingCartItem = this.cartItems.find(temp => {temp.productId === theCartItem.productId});
 
       //check if we found it
 
@@ -88,5 +95,35 @@ export class CartService {
     console.log(`totalcartPricevalue: ${totalCartPrice.toFixed(2)}, totalcartQuantityValue: ${totalCartQuantity}`);
 
     console.log('-----------------------');
+  }
+
+  // Decrementing the cart quantity
+
+  decrementCartQuantity(theCartItem: CartItem){
+
+    theCartItem.quantity--;
+
+    if(theCartItem.quantity == 0){
+      this.remove(theCartItem);
+    }
+    else{
+      this.computeCartTotals();
+    }
+
+  }
+
+  remove(theCartItem: CartItem){
+
+    //get index of the item in the cart array
+
+    const index = this.cartItems.findIndex(temp => temp.productId === theCartItem.productId);
+
+    //if found, remove the item from array at that index
+
+    if(index>-1){
+      this,this.cartItems.splice(index,1);
+
+      this.computeCartTotals();
+    }
   }
 }
